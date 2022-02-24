@@ -1,11 +1,10 @@
-import React, { useState } from 'react';
-import { Text, ScrollView } from 'react-native';
-import StyleComponent from '../styles/css';
+import React, { useState, useContext } from 'react'
+import { Text, ScrollView, Pressable } from 'react-native'
+import StyleComponent from '../styles/css'
+import MenuBlock from './components/Menu'
+import { RoutesContext } from '../Context'
 
 const MainSection = StyleComponent.MainSection;
-const Menu = StyleComponent.MainPage.Menu;
-const MenuAction = StyleComponent.MainPage.MenuActionButton;
-const MenuActionColor = StyleComponent.MainPage.MenuActionButtonColor;
 const Content = StyleComponent.MainPage.Content;
 const ContentAvatar = StyleComponent.MainPage.ContentAvatar;
 const ContentAvatarIcons = StyleComponent.MainPage.ContentAvatarIcons;
@@ -14,6 +13,12 @@ const ContentItems = StyleComponent.MainPage.ContentItems;
 const ContentItemsButton = StyleComponent.MainPage.ContentItemsButton;
 
 export default function MainPage() {
+
+  const [ ,setRoute ] = useContext(RoutesContext)
+  const [ opacity1, setOpacity1 ] = useState(1)
+  const [ opacity2, setOpacity2 ] = useState(1)
+  const [ opacity3, setOpacity3 ] = useState(1)
+
   return (
     <MainSection
       style={{
@@ -26,9 +31,40 @@ export default function MainPage() {
         <ScrollView>
 
           <ContentAvatar>
+          <ContentAvatarIcons
+            style={{
+              marginTop: 40,
+              marginLeft: -22
+            }}
+          >
+              <ContentAvatarIcon>
+                <Pressable
+                  style={{
+                    position: 'absolute',
+                    width: '100%',
+                    height: '100%',
+                    left: 0,
+                    top: 0,
+                    zIndex: 10
+                  }}
+                  onPress={() => setRoute('my-meets')}
+                />
+              </ContentAvatarIcon>
+            </ContentAvatarIcons>
             <ContentAvatarIcons>
-              <ContentAvatarIcon/>
-              <ContentAvatarIcon/>
+              <ContentAvatarIcon>
+                <Pressable
+                  style={{
+                    position: 'absolute',
+                    width: '100%',
+                    height: '100%',
+                    left: 0,
+                    top: 0,
+                    zIndex: 10
+                  }}
+                  onPress={() => setRoute('my-page')}
+                />
+              </ContentAvatarIcon>
             </ContentAvatarIcons>
           </ContentAvatar>
           <Text 
@@ -44,68 +80,65 @@ export default function MainPage() {
           </Text>
           <ContentItems>
 
-            <ContentItemsButton/>
-            <ContentItemsButton/>
-            <ContentItemsButton style={{ marginBottom: 0 }}/>
+            <ContentItemsButton
+              opacity={opacity1}
+              onTouchStart={() => {
+                setOpacity1(0.8)
+                setRoute('near-meets')
+              }}
+              onTouchEnd={() => setOpacity1(1)}
+            >
+              <Text
+                style={{
+                  color: 'white',
+                  fontSize: 13
+                }}
+              >
+                meets near me
+              </Text>
+            </ContentItemsButton>
+            <ContentItemsButton
+              opacity={opacity2}
+              onTouchStart={() => {
+                setOpacity2(0.8)
+                setRoute('contacts')
+              }}
+              onTouchEnd={() => setOpacity2(1)}
+            >
+              <Text
+                style={{
+                  color: 'white',
+                  fontSize: 13
+                }}
+              >
+                my contacts
+              </Text>
+            </ContentItemsButton>
+            <ContentItemsButton 
+              style={{ marginBottom: 0 }}
+              opacity={opacity3}
+              onTouchStart={() => {
+                setOpacity3(0.8)
+                setRoute('main')
+              }}
+              onTouchEnd={() => setOpacity3(1)}
+            >
+              <Text
+                style={{
+                  color: 'white',
+                  fontSize: 13
+                }}
+              >
+                create new meet
+              </Text>
+            </ContentItemsButton>
 
           </ContentItems>
 
         </ScrollView>
       </Content>
 
-      <Menu>
-        <MenuAction>
-
-            <Text
-              style={{
-                position: 'absolute',
-                left: '100%',
-                marginLeft: 14,
-              }}
-            >
-              
-              main page
-              
-            </Text>
-            <Text
-              style={{
-                position: 'absolute',
-                left: '0%',
-                marginLeft: -86,
-              }}
-            >
-              
-              main page
-              
-            </Text>
-            <Text
-              style={{
-                position: 'absolute',
-                top: 0,
-                marginLeft: -6,
-                marginTop: -36
-              }}
-            >
-              
-              main page
-              
-            </Text>
-            <Text
-              style={{
-                position: 'absolute',
-                top: '100%',
-                marginLeft: -6,
-                marginTop: 11
-              }}
-            >
-              
-              main page
-              
-            </Text>
-
-          <MenuActionColor/>
-        </MenuAction>
-      </Menu>
+      <MenuBlock/>
 
     </MainSection>
   );

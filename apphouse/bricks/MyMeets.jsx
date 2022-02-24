@@ -8,11 +8,12 @@ const MainSection = StyleComponent.MainSection;
 const Header = StyleComponent.Header;
 const HeaderUser = StyleComponent.HeaderUser;
 const Content = StyleComponent.NearMeets.Content;
-const Item = StyleComponent.NearMeets.Item;
+const Item = StyleComponent.MyMeets.ListItem;
 const ItemLogo = StyleComponent.NearMeets.ItemLogo;
-const ItemClose = StyleComponent.NearMeets.ItemClose;
+const ItemNo = StyleComponent.MyMeets.ItemNo;
+const ItemYes = StyleComponent.MyMeets.ItemYes;
 
-export default function NearMeets() {
+export default function MyMeets() {
 
   const [ ,setRoute ] = useContext(RoutesContext)
 
@@ -56,11 +57,12 @@ export default function NearMeets() {
                     left: 0,
                     zIndex: 10
                   }}
-                  onPress={() => setRoute('near-meet-page')}
+                  onPress={() => setRoute('my-meet-page')}
                 />
                 <Text>USERNAME USER</Text>
                 <ItemLogo/>
-                <ItemClose/>
+                <ItemYes/>
+                <ItemNo/>
               </Item> 
             ) 
           

@@ -1,7 +1,8 @@
-import React, { useState } from 'react'
+import React, { useContext } from 'react'
 import { Text, ScrollView } from 'react-native'
 import StyleComponent from '../styles/css'
 import MenuBlock from './components/Menu'
+import { RoutesContext } from '../Context'
 
 const MainSection = StyleComponent.MainSection;
 const Header = StyleComponent.Header;
@@ -11,10 +12,15 @@ const Bio = StyleComponent.NearMeetOne.Bio;
 const BioAvatar = StyleComponent.NearMeetOne.BioAvatar;
 const BioDescription = StyleComponent.NearMeetOne.BioDescription;
 const BioDescriptionDialog = StyleComponent.NearMeetOne.BioDescriptionDialog;
-const AddMeetButton = StyleComponent.NearMeetOne.AddMeetButton;
+const ButtonsGroup = StyleComponent.MyMeetPage.ButtonsGroup;
+const ButtonAdd = StyleComponent.MyMeetPage.ButtonAdd;
+const ButtonSkip = StyleComponent.MyMeetPage.ButtonSkip;
 const BackButton = StyleComponent.NearMeetOne.BackButton;
 
-export default function NearMeetPage() {
+export default function MyMeetPage() {
+
+  const [ ,setRoute ] = useContext(RoutesContext)
+
   return (
     <MainSection
       style={{
@@ -75,10 +81,17 @@ export default function NearMeetPage() {
           
           </Bio>
 
-          <AddMeetButton> 
-            <Text style={{ color: 'white', fontSize: 15 }}>отправить новый мит</Text>
-          </AddMeetButton>
-          <BackButton>
+          <ButtonsGroup>
+
+            <ButtonAdd>
+              <Text style={{ color: 'white', fontSize: 15 }}>добавить</Text>
+            </ButtonAdd>
+            <ButtonSkip>
+              <Text style={{ color: 'white', fontSize: 15 }}>отклонить</Text>
+            </ButtonSkip>
+
+          </ButtonsGroup>
+          <BackButton onTouchStart={() => setRoute('my-meets')}>
             <Text style={{ color: 'white', fontSize: 15 }}>вернуться к списку</Text>
           </BackButton>
 

@@ -57,6 +57,10 @@ const CSS = {
       margin-right: 20px;
       margin-top: -20px;
       elevation: 4;
+      display: flex;
+      flex-direction: row;
+      align-items: center;
+      justify-content: space-around;
     `,
     Copyright: styled.Text`
       color: grey;
@@ -93,6 +97,7 @@ const CSS = {
       background-color: rgb(114, 34, 114);
       border-radius: 30px;
       elevation: 4;
+      opacity: ${ props => props.opacity ? props.opacity : 1 }
     `,
     Content: styled.View`
       position: relative;
@@ -112,9 +117,9 @@ const CSS = {
     ContentAvatarIcons: styled.View`
       flex-direction: row;
       align-items: center;
-      justify-content: space-between;
+      justify-content: space-around;
       position: absolute;
-      width: 78px;
+      width: 40px;
       height: 40px;
       left: 100%;
       margin-left: -44px;
@@ -140,6 +145,12 @@ const CSS = {
       background-color: rgba(114, 34, 114, 1);
       border-radius: 6px;
       margin-bottom: 10px;
+      display: flex;
+      flex-direction: row;
+      align-items: center;
+      justify-content: space-around;
+      padding-bottom: 4px;
+      opacity: ${ props => props.opacity ? props.opacity : 1 }
     `
   },
   NearMeets: {
@@ -161,7 +172,7 @@ const CSS = {
       border-top-right-radius: 16px;
       border-bottom-right-radius: 16px;
       elevation: 4;
-      margin-top: 10px;
+      margin-top: 16px;
       padding-left: 18px;
       padding-right: 18px;
     `,
@@ -253,6 +264,137 @@ const CSS = {
       margin-top: 12px;
       padding-bottom: 4px;
     `
+  },
+  MyContacts: {
+    Item: styled.View`
+      flex-direction: row;
+      align-items: center;
+      justify-content: space-between;
+      position: relative;
+      width: ${ window.width - 16 };
+      height: 80px;
+      background-color: #D9D9D9;
+      border-top-right-radius: 16px;
+      border-bottom-right-radius: 16px;
+      elevation: 4;
+      margin-top: 16px;
+      padding-left: 18px;
+      padding-right: 18px;
+    `,
+  },
+  MyContact: {
+    VisitCard: styled.View`
+      position: relative;
+      width: ${ window.width }
+      height: auto;
+    `,
+    VisitCardLine: styled.View`
+      position: relative;
+      width: ${ window.width * 0.8 };
+      height: 54px;
+      flex-direction: row;
+      align-items: center;
+      justify-content: flex-start;
+      margin-left: auto;
+      margin-right: auto;
+    `,
+    VisitCardLineIcon: styled.View`
+      position: relative;
+      width: 30px;
+      height: 30px;
+      border-radius: 15px;
+      background-color: #AAAAAA;
+      margin-right: 12px;
+    `
+  },
+  MyMeets: {
+    ListItem: styled.View`
+      flex-direction: row;
+      align-items: center;
+      justify-content: space-between;
+      position: relative;
+      width: 72%;
+      height: 80px;
+      background-color: #D9D9D9;
+      border-radius: 16px;
+      elevation: 4;
+      margin-top: 16px;
+      margin-left: 14%;
+      padding-left: 18px;
+      padding-right: 18px;
+    `,
+    ItemYes: styled.View`
+      position: absolute;
+      width: 30px;
+      height: 30px;
+      border-radius: 15px;
+      background-color: #AAAAAA;
+      left: 0%;
+      margin-left: -45px;
+      opacity: 0.6; 
+    `,
+    ItemNo: styled.View`
+      position: absolute;
+      width: 30px;
+      height: 30px;
+      border-radius: 15px;
+      background-color: #AAAAAA;
+      left: 100%;
+      margin-left: 50px;
+      opacity: 0.6; 
+    `
+  },
+  MyMeetPage: {
+    ButtonsGroup: styled.View`
+      position: relative;
+      width: ${ window.width * 0.7 };
+      height: 60px;
+      margin-left: auto;
+      margin-right: auto;
+      flex-direction: row;
+      align-items: center;
+      justify-content: space-between;
+      margin-top: 38px;
+      padding-bottom: 4px;
+    `,
+    ButtonAdd: styled.View`
+      position: relative;
+      width: 46%;
+      height: 60px;
+      background-color: rgb(12, 167, 137);
+      margin-left: auto;
+      margin-right: auto;
+      flex-direction: row;
+      align-items: center;
+      justify-content: space-around;
+      padding-bottom: 4px;
+      border-radius: 6px;
+    `,
+    ButtonSkip: styled.View`
+      position: relative;
+      width: 46%;
+      height: 60px;
+      background-color: rgb(218, 0, 99);
+      margin-left: auto;
+      margin-right: auto;
+      flex-direction: row;
+      align-items: center;
+      justify-content: space-around;
+      padding-bottom: 4px;
+      border-radius: 6px;
+    `
+  },
+  MyPage: {
+    ContentAvatar: styled.View`
+      position: relative;
+      width: 180px;
+      height: 180px;
+      border-radius: 90px;
+      background-color: rgba(114, 34, 114, 0.2);
+      margin-left: auto;
+      margin-right: auto;
+      margin-top: 40px;
+    `,
   }
 
 }

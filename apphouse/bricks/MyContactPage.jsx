@@ -1,7 +1,8 @@
-import React, { useState } from 'react'
+import React, { useContext } from 'react'
 import { Text, ScrollView } from 'react-native'
 import StyleComponent from '../styles/css'
 import MenuBlock from './components/Menu'
+import { RoutesContext } from '../Context'
 
 const MainSection = StyleComponent.MainSection;
 const Header = StyleComponent.Header;
@@ -14,7 +15,10 @@ const BioDescriptionDialog = StyleComponent.NearMeetOne.BioDescriptionDialog;
 const AddMeetButton = StyleComponent.NearMeetOne.AddMeetButton;
 const BackButton = StyleComponent.NearMeetOne.BackButton;
 
-export default function NearMeetPage() {
+export default function MyContactPage() {
+
+  const [ ,setRoute ] = useContext(RoutesContext)
+
   return (
     <MainSection
       style={{
@@ -46,8 +50,8 @@ export default function NearMeetPage() {
 
             <BioAvatar/>
             <BioDescription>
-              <BioDescriptionDialog>
-                <Text style={{ color: 'white' }}>meet status</Text>
+              <BioDescriptionDialog onTouchStart={() => setRoute('my-contact-visit-card')}>
+                <Text style={{ color: 'white' }}>открыть визитку</Text>
               </BioDescriptionDialog>
               <Text
                 style={{
@@ -75,11 +79,15 @@ export default function NearMeetPage() {
           
           </Bio>
 
-          <AddMeetButton> 
-            <Text style={{ color: 'white', fontSize: 15 }}>отправить новый мит</Text>
+          <AddMeetButton onTouchStart={() => setRoute('contacts')}> 
+
+            <Text style={{ color: 'white', fontSize: 15 }}>обратно к списку</Text>
+          
           </AddMeetButton>
           <BackButton>
-            <Text style={{ color: 'white', fontSize: 15 }}>вернуться к списку</Text>
+            
+            <Text style={{ color: 'white', fontSize: 15 }}>удалить из контактов</Text>
+          
           </BackButton>
 
           <Text 

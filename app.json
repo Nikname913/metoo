@@ -4,7 +4,7 @@
     "slug": "metoo",
     "version": "1.0.0",
     "orientation": "portrait",
-    "icon": "",
+    "icon": "./apphouse//images/logoqa.png",
     "splash": {
       "image": "",
       "resizeMode": "contain",
@@ -23,7 +23,8 @@
       "adaptiveIcon": {
         "foregroundImage": "",
         "backgroundColor": "#FFFFFF"
-      }
+      },
+      "package": "com.nikname.metoo"
     },
     "web": {
       "favicon": ""
