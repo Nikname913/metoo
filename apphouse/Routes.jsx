@@ -14,7 +14,7 @@ import { RoutesContext, LoginContext } from './Context';
 export default function Routes() {
 
   const [ route, setRoute ] = useState('start-page')
-  const [ loginData, setLoginData ] = useState({})
+  const [ loginData, setLoginData ] = useState([])
 
   return (
     <RoutesContext.Provider value={[ route, setRoute ]}>

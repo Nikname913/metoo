@@ -4,14 +4,17 @@ class Request {
     path: '',
     type: '',
     headers: {},
-    body: {}
+    body: {},
+    action: false,
+    error: false
   }) {
 
     const { path, 
       type, 
       headers = false, 
       body = false,
-      action = false } = params
+      action = false,
+      error = false } = params
 
     switch (type) {
 
@@ -19,9 +22,20 @@ class Request {
         fetch(path).then(answer => answer.json())
         .then(data => {
 
-          action && action(data)
+          if ( data.length > 0 ) {
+            
+            action && action(data)
+          
+          } else {
+
+            error && error()
+
+          }
 
         })
+        break
+
+      default:
         break
 
     }
@@ -29,3 +43,6 @@ class Request {
   }
 
 }
+
+const RequestMaker = new Request()
+export default RequestMaker

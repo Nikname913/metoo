@@ -1,7 +1,9 @@
 import React, { useState, useContext } from 'react'
 import { Text } from 'react-native'
+import ModalWindow from '../services/modal.service'
 import StyleComponent from '../styles/css'
-import { LoginContext, RoutesContext } from '../Context';
+import { LoginContext, RoutesContext } from '../Context'
+import RequestMaker from '../services/request.service'
 
 const MainSection = StyleComponent.MainSection;
 const InputView = StyleComponent.HelloPage.HelloPageInpView;
@@ -11,11 +13,12 @@ const Copyright = StyleComponent.HelloPage.Copyright;
 
 export default function HelloPage() {
 
-  const [ loginData, setLoginData ] = useContext(LoginContext)
+  const [ ,setLoginData ] = useContext(LoginContext)
   const [ ,setRoute ] = useContext(RoutesContext)
   const [ backgroundColor, setBackgroundColor ] = useState('rgb(114, 34, 114)')
   const [ login, setLogin ] = useState('')
   const [ pass, setPass ] = useState('')
+  const [ showModalVisible, setShowModalVisible ] = useState(false)
 
   const [ placeholderLogin, setPlaceholderLogin ] = useState('write or create login')
   const [ placeholderPass, setPlaceholderPass ] = useState('write or create pass')
@@ -34,6 +37,19 @@ export default function HelloPage() {
 
   }
 
+  function successResult(param) {
+
+    setLoginData(param)
+    setRoute('main')
+
+  }
+
+  function errorResult() {
+
+    setShowModalVisible(true)
+
+  }
+
   return (
     <MainSection
       style={{
@@ -41,6 +57,12 @@ export default function HelloPage() {
         justifyContent: 'space-around',
       }}
     > 
+
+      <ModalWindow
+        inner={"Введенные данные неверные, попробуйте ввести снова"}
+        modalVisible={showModalVisible}
+        setModalVisible={setShowModalVisible}
+      />
 
       <InputView>
         
@@ -119,12 +141,13 @@ export default function HelloPage() {
           style={{ backgroundColor }}
           onTouchStart={() => {
             setBackgroundColor('rgb(114, 54, 114)')
-            setLoginData({
-              userName: login,
-              userPass: pass
-            })
 
-            setRoute('main')
+            RequestMaker.requestCreator({
+              path: `http://metoo-app.ru/?apiFork=GET_USER&user=${login}&password=${pass}`,
+              type: 'GET',
+              action: successResult,
+              error: errorResult
+            })
 
           }}
           onTouchEnd={() => {
